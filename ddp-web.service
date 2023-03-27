@@ -1,0 +1,17 @@
+[Unit]
+Description=Drug Discovery Portal Web Service (Rails)
+After=network.target
+ 
+[Service]
+Type=simple
+User=ddp
+SyslogIdentifier=ddp-web
+WorkingDirectory=/home/ddp/ddp_lite
+PIDFile=/home/ddp/ddp_lite/tmp/pids/server.pid
+ExecStart=/bin/bash -l -c "rails server"
+ExecReload=/bin/kill -s USR2 $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+Restart=on-failure
+ 
+[Install]
+WantedBy=multi-user.target
