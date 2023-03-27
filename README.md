@@ -30,8 +30,8 @@ apt install yarn
 __Install App__
 ```
 cd
-git clone https://github.com/austin-darrow/ddp_lite
-cd ddp_lite
+git clone https://github.com/TACC/ddp-web
+cd ddp-web
 bundle install
 ```
 
@@ -94,8 +94,8 @@ make nginx_edit
 
 Editing App Pages
 --------
-- HTML pages are in ddp\_lite/app/views/pages
-- Header/footer are in ddp\_lite/app/views/shared
-- Main HTML metadata is in ddp\_lite/app/views/layouts/application.html.erb
-- CSS is in ddp\_lite/app/assets/stylesheets/main.css
-- Images are in ddp\_lite/app/assets/images
+- HTML pages are in ddp-web/app/views/pages
+- Header/footer are in ddp-web/app/views/shared
+- Main HTML metadata is in ddp-web/app/views/layouts/application.html.erb
+- CSS is in ddp-web/app/assets/stylesheets/main.css
+- Images are in ddp-web/app/assets/images
