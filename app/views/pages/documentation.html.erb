@@ -1,0 +1,133 @@
+<% content_for :title, "Documentation | DrugDiscovery@TACC" %>
+
+<div id="documentation">
+
+    <h1>Tutorial</h1>
+    <h3>Account Creation & Finding the Application</h3>
+    <ol>
+        <li>Visit the <%= link_to "TACC portal account request page",  "https://portal.tacc.utexas.edu/account-request" %> to request an account.</li>
+        <li>Once approved, login to the <%= link_to "UTRC Portal", "utrc.tacc.utexas.edu" %>.</li>
+        <li>Navigate to Applications -> My Apps -> Autodock-Vina 1.2.3.</li>
+    </ol>
+
+    <h3>Submitting a Job</h3>
+    <div class="tutorial-item">
+        <%= image_tag "tutorial/input_receptor.png", :class => 'tutorial-img' %>
+        <div>Upload a .pdb or .pdbqt protein receptor file to your TACC storage system work directory.</div>
+    </div>
+    <hr>
+    <div class="tutorial-item">
+        <%= image_tag "tutorial/input_library.png", :class => 'tutorial-img' %>
+        <div>Choose a ligand library. More information on each library can be found in our <%= link_to "FAQ", faq_path %>.</div>
+    </div>
+    <hr>
+    <div class="tutorial-item">
+        <%= image_tag "tutorial/input_center.png", :class => 'tutorial-img' %>
+        <div>Specify the X-Y-Z coordinate grid-center for the search area. This must be located inside of the uploaded protein receptor.</div>
+    </div>
+    <hr>
+    <div class="tutorial-item">
+        <%= image_tag "tutorial/input_box.png", :class => 'tutorial-img' %>
+        <div>Specify the search area box's X-Y-Z bounds.<br>The larger the box size, the longer the job will take to run.</div>
+    </div>
+    <hr>
+    <div class="tutorial-item">
+        <%= image_tag "tutorial/input_returned_scores.png", :class => 'tutorial-img' %>
+        <div>Choose how many top scores to be returned (maximum: 1000).</div>
+    </div>
+    <hr>
+    <div class="tutorial-item">
+        <%= image_tag "tutorial/config_queue.png", :class => 'tutorial-img' %>
+        <div>Choose the Lonestar6 compute queue to run your job on.</div>
+    </div>
+    <hr>
+    <div class="tutorial-item">
+        <%= image_tag "tutorial/config_runtime.png", :class => 'tutorial-img' %>
+        <div>Specify the maximum runtime. Try to choose a time that will allow enough time for the job to finish, with a little extra on top. If your job does not finish by this time, it will exit and no results will be returned. However, a higher maximum runtime may cause your job to wait longer in the queue. Suggested runtimes:
+        <table>
+            <tr>
+                <th>Ligand Library</th>
+                <th>Suggested Max Runtime</th>
+            </tr>
+            <tr>
+                <td>ZINC-in-trials</td>
+                <td class='center'>4 hours</td>
+            </tr>
+            <tr>
+                <td>ZINC-fragments</td>
+                <td class='center'>15 hours</td>
+            </tr>
+            <tr>
+                <td>Enamine-PC</td>
+                <td class='center'>8 hours</td>
+            </tr>
+            <tr>
+                <td>Enamine-AC</td>
+                <td class='center'>26 hours</td>
+            </tr>
+            <tr>
+                <td>Enamine-HTSC</td>
+                <td class='center'>26 hours</td>
+            </tr>
+        </table>
+        <p>Note that these suggested times give a ~2 hour buffer on top of our internal benchmark times for each library. Given different input parameters, these times may need to be significantly adjusted for your job.</div>
+    </div>
+    <hr>
+    <div class="tutorial-item">
+        <%= image_tag "tutorial/config_nodes.png", :class => 'tutorial-img' %>
+        <div>Input the exact number of processors and nodes required, depending on the ligand library. You must input based on the table below, or your job will fail. Note that Processors on Each Node is always set to 32.
+        <table>
+            <tr>
+                <th>Ligand Library</th>
+                <th>Processors on Each Node</th>
+                <th>Node Count</th>
+            </tr>
+            <tr>
+                <td>ZINC-in-trials</td>
+                <td class='center'>32</td>
+                <td class='center'>1</td>
+            </tr>
+            <tr>
+                <td>ZINC-fragments</td>
+                <td class='center'>32</td>
+                <td class='center'>1</td>
+            </tr>
+            <tr>
+                <td>Enamine-PC</td>
+                <td class='center'>32</td>
+                <td class='center'>1</td>
+            </tr>
+            <tr>
+                <td>Enamine-AC</td>
+                <td class='center'>32</td>
+                <td class='center'>3</td>
+            </tr>
+            <tr>
+                <td>Enamine-HTSC</td>
+                <td class='center'>32</td>
+                <td class='center'>10</td>
+            </tr>
+        </table>
+        </div>
+    </div>
+    <hr>
+    <div class="tutorial-item">
+        <%= image_tag "tutorial/config_name.png", :class => 'tutorial-img' %>
+        <div>Enter the output job name and file path.</div>
+    </div>
+    <hr>
+
+    <h3>How do I monitor my job's status?</h3>
+    <p>Navigate to the UTRC Portal -> Log in -> History</p>
+
+    <h3>How do I retrieve my job's output?</h3>
+    <p>There are two ways:</p>
+    <ol>
+        <li>Navigate to the UTRC Portal -> Log in -> History -> Select the link for your job under the Output Location column.
+        <li>Navigate to the Output Location on your TACC Storage System that you specified when submitting the job.
+    </ol>
+
+    <h3>How do I view my results interactively?</h3>
+    <p>The user may also choose to visualize their resulting output file utilizing the <%= link_to "ChimeraX application", "https://github.com/tiffanyhuff/ChimeraXApp" %> on TACC's Lonestar6 supercomputer. To run the application, the user must submit a job using the <%= link_to "University of Texas Research Cyberinfrastructure (UTRC) system", "https://utrc.tacc.utexas.edu/" %>. A virtual DCV session will be initialized for the user, and a document titled 'ChimeraX_dcvserver.txt' will be created in the user's work folder with connection instructions. Once connected, the <%= link_to "University of California San Francisco (UCSF)", "https://www.ucsf.edu/" %> <%= link_to "ChimeraX", "https://www.cgl.ucsf.edu/chimerax/" %> software will begin running, and a Tapis jobs archive folder will be created on the desktop for the user's convenience. The user may then use the ChimeraX program to open the file containing the top scoring docked ligands.</p>
+    <div class='spacing'></div>
+</div>
