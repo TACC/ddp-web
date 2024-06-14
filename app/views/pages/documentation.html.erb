@@ -6,39 +6,39 @@
     <h3>Account Creation & Finding the Application</h3>
     <ol>
         <li>Visit the <%= link_to "TACC portal account request page",  "https://portal.tacc.utexas.edu/account-request" %> to request an account.</li>
-        <li>Once approved, login to the <%= link_to "UTRC Portal", "utrc.tacc.utexas.edu" %>.</li>
-        <li>Navigate to Applications -> My Apps -> Autodock-Vina 1.2.3.</li>
+        <li>Once approved, login to the <%= link_to "UTRC Portal", "https://utrc.tacc.utexas.edu" %>.</li>
+        <li>Navigate to Applications -> Simulation -> AutoDock Vina v1.2.3.</li>
     </ol>
 
     <h3>Submitting a Job</h3>
     <div class="tutorial-item">
         <%= image_tag "tutorial/input_receptor.png", :class => 'tutorial-img' %>
-        <div>Upload a .pdb or .pdbqt protein receptor file to your TACC storage system work directory.</div>
+        <div>First upload a .pdb or .pdbqt protein receptor file to your TACC storage system work directory from the "Data Files" tab. Then, select the protein file in this box.</div>
     </div>
     <hr>
     <div class="tutorial-item">
         <%= image_tag "tutorial/input_library.png", :class => 'tutorial-img' %>
-        <div>Choose a ligand library. More information on each library can be found in our <%= link_to "FAQ", faq_path %>.</div>
+        <div>Choose a ligand library from the drop down list. Use the "Test-set" library first to make sure your job is working with the inputs as expected before proceeding to the larger libraries. More information on each library can be found in our <%= link_to "FAQ", faq_path %>.</div>
     </div>
     <hr>
     <div class="tutorial-item">
         <%= image_tag "tutorial/input_center.png", :class => 'tutorial-img' %>
-        <div>Specify the X-Y-Z coordinate grid-center for the search area. This must be located inside of the uploaded protein receptor.</div>
+        <div>Specify the X-Y-Z coordinate grid-center for the search area. This must be located inside of the uploaded protein receptor. Units are in Angstroms. Use comma-separated values with no spaces in between.</div>
     </div>
     <hr>
     <div class="tutorial-item">
         <%= image_tag "tutorial/input_box.png", :class => 'tutorial-img' %>
-        <div>Specify the search area box's X-Y-Z bounds.<br>The larger the box size, the longer the job will take to run.</div>
+        <div>Specify the search area box's X-Y-Z bounds. Units are in Angstroms. Use comma-separated values with no spaces in between. NOTE: The larger the box size, the longer the job will take to run - be conservative with box size.</div>
     </div>
     <hr>
     <div class="tutorial-item">
         <%= image_tag "tutorial/input_returned_scores.png", :class => 'tutorial-img' %>
-        <div>Choose how many top scores to be returned (maximum: 1000).</div>
+        <div>Choose how many of the top scoring molecules to be returned (maximum: 1000).</div>
     </div>
     <hr>
     <div class="tutorial-item">
         <%= image_tag "tutorial/config_queue.png", :class => 'tutorial-img' %>
-        <div>Choose the Lonestar6 compute queue to run your job on.</div>
+        <div>Choose the Lonestar6 compute queue to run your job on. Recommended "development" for the Test-set library and "normal" for all other libraries.</div>
     </div>
     <hr>
     <div class="tutorial-item">
@@ -48,6 +48,10 @@
             <tr>
                 <th>Ligand Library</th>
                 <th>Suggested Max Runtime</th>
+            </tr>
+            <tr>
+                <td>Test-set</td>
+                <td class='center'>10 minutes</td>
             </tr>
             <tr>
                 <td>ZINC-in-trials</td>
@@ -70,7 +74,7 @@
                 <td class='center'>26 hours</td>
             </tr>
         </table>
-        <p>Note that these suggested times give a ~2 hour buffer on top of our internal benchmark times for each library. Given different input parameters, these times may need to be significantly adjusted for your job.</div>
+        <p>Note that these suggested times give a ~2 hour buffer on top of our internal benchmark times for each library and using a 22x22x22 Angstrom box. Given different input parameters (especially box size), these times may need to be significantly adjusted for your job.</div>
     </div>
     <hr>
     <div class="tutorial-item">
@@ -112,8 +116,8 @@
     </div>
     <hr>
     <div class="tutorial-item">
-        <%= image_tag "tutorial/config_name.png", :class => 'tutorial-img' %>
-        <div>Enter the output job name and file path.</div>
+        <%= image_tag "tutorial/submit.png", :class => 'tutorial-img' %>
+        <div>Default values can be used in the other boxes. Press the "Submit" button when ready.</div>
     </div>
     <hr>
 

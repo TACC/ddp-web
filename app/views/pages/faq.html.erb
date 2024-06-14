@@ -6,7 +6,7 @@
 
   <h3 class="">What is DrugDiscovery@TACC?</h3>
   <div >
-    <p>This is formerly the TACC- and University of Texas Medical Branch (UTMB)-hosted web-resource for running molecular docking software. This service has been re-written, updated with new features, and moved to TACC's <a href="https://utrc.tacc.utexas.edu/">UTRC Portal</a>. The application is listed as Autodock-Vina 1.2.3.</p>
+    <p>This is formerly the TACC- and University of Texas Medical Branch (UTMB)-hosted web-resource for running molecular docking software. This service has been re-written, updated with new features, and moved to TACC's <a href="https://utrc.tacc.utexas.edu/">UTRC Portal</a>. The application is listed as AutoDock Vina v1.2.3.</p>
     <p>This new application provides controlled access to molecular docking software running on the <a href="https://www.tacc.utexas.edu/systems/lonestar6" target="_blank">Lonestar 6</a> supercomputer at TACC (Texas Advanced Computing Center). Approved users can login to the UTRC Portal, upload a protein coordinate file (PDB or PDBQT format) along with an active-site specification, and dock that protein against libraries containing up to millions of small, drug-like, or natural product molecules. These libraries were extracted from the ZINC database and kindly provided by Dr. John Irwin. Libraries were filtered to include only commercially-available (i.e., readily available for purchase from established chemical supply companies) compounds. This portal was originally developed by researchers at the University of Texas Medical Branch and then ported to TACC. Finally, it was re-written in 2023 and moved to the UTRC Portal.</p>
     <p><strong>Note:</strong>Computer docking and virtual screening are inexact, but potentially very valuable, tools. This site is intended to provide easy access to researchers wishing to perform small numbers of docking or virtual screening experiments, but who do not have the necessary computer resources and/or computational biology backgrounds. This interface can handle most protein-ligand docking experiments, but there will always be systems where this simple interface will fail. For those cases, researchers will need to develop the necessary expertise or collaborations to perform the experiment.</p>
   </div>
@@ -30,8 +30,8 @@
 
   <h3 data-anchor="dud" id="h3dud" class="">How good is the docking software?</h3>
   <div ><a href="#dud"></a>
-    <p>Before using Autodock Vina for this project, it was tested in-house against the <a href="http://dud.docking.org/" target="_blank">Directory of Useful Decoys (DUD) Database</a> [1], a database designed specifically for rigorously testing docking algorithms. The testing protocol was taken from an earlier paper[2] written at Wyeth Research that tested six molecular docking programs against the DUD database. </p>
-    <p>For each protein listed in the DUD database[1], the enrichment plots shown below describe the performance of Autodock Vina against that of other molecular docking software (e.g., GLIDE HTVS, PhDOCK, ICM, DOCK, Surflex, FlexX) as well as random and ideal enrichments. Also listed are the sizes of the DUD decoy library and known binders used for virtual screening against each DUD protein. Data for the non-Vina molecular docking programs was kindly provided by Dr. Cross and was reported earlier by his group[2]. The results shown below indicated Autodock Vina was a strong competitor against the other programs, and at the top of the pack in many cases.</p>
+    <p>Before using AutoDock Vina for this project, it was tested in-house against the <a href="http://dud.docking.org/" target="_blank">Directory of Useful Decoys (DUD) Database</a> [1], a database designed specifically for rigorously testing docking algorithms. The testing protocol was taken from an earlier paper[2] written at Wyeth Research that tested six molecular docking programs against the DUD database. </p>
+    <p>For each protein listed in the DUD database[1], the enrichment plots shown below describe the performance of AutoDock Vina against that of other molecular docking software (e.g., GLIDE HTVS, PhDOCK, ICM, DOCK, Surflex, FlexX) as well as random and ideal enrichments. Also listed are the sizes of the DUD decoy library and known binders used for virtual screening against each DUD protein. Data for the non-Vina molecular docking programs was kindly provided by Dr. Cross and was reported earlier by his group[2]. The results shown below indicated AutoDock Vina was a strong competitor against the other programs, and at the top of the pack in many cases.</p>
     <p>
     </p><table class="table table-striped table-bordered">
       <thead>
@@ -88,14 +88,10 @@
     <div >
         <p>
         </p><table class="table table-striped table-bordered"><tbody>
-            <tr><td><strong>error.txt</strong></td><td>An error file that will only be generated if the job is submitted with invalid input parameters. Please check this first if your job fails.</td></tr>
-            <tr><td>results.tar.gz</td><td>A folder containing the top N (user-specified; up to 1000) binders, each with their top pose in PDBQT format.
-              Additionally, a log file listing all results in score order; best (most negative) score comes first. The ligands are referenced by ZINC codes, and these can be extracted and pasted into the <a href="http://zinc.docking.org/search/structure.php" target="_blank">ZINC web site</a> to return chemical structures, catalog numbers, etc. Finally, it includes a single file containing the top N binders concatonated together, for ease of use in comparison with molecular visualization software.</td></tr>
-            <tr><td>Protein</td><td>A file containing the target protein in PDBQT format. It will also return the PDB file you uploaded, if applicable.</td></tr>
-            <tr><td>vina_1.2.3.0.sif</td><td>The container image used by our supercomputer to build the necessary runtime environment.</td></tr>
-            <tr><td>.agave.log</td><td>An internal log file.</td></tr>
-            <tr><td>job.err</td><td>A log file showing stderr.</td></tr>
-            <tr><td>job.out</td><td>A log file showing stdout.</td></tr>
+            <tr><td>1ABC_receptor.pdb/pdbqt</td><td>The original protein receptor file used for the job will be copied to this directory, named with its original name (e.g. "1ABC_receptor.pdb"). If you used a PDB file, the charged PDBQT file generated in this workflow will also be returned.</td></tr>
+            <tr><td>results.tar.gz</td><td>A tar/zipped folder containing the top N (user-specified; up to 1000) binders, each with their top pose in PDBQT format. Additionally, a log file listing all results in score order; best (most negative) score comes first. The ligands are referenced by ZINC codes, and these can be extracted and pasted into the <a href="http://zinc.docking.org/search/structure.php" target="_blank">ZINC web site</a> to return chemical structures, catalog numbers, etc. Finally, it includes a single file containing the top N binders concatonated together, for ease of use in comparison with molecular visualization software.</td></tr>
+            <tr><td>tapisjob.out</td><td>A log file containging details from the log run, including errors if they occurred.</td></tr>
+            <tr><td>tapisjob.env/tapisjob.sh</td><td>Run scripts that were used on the cluster to run the job, and could be used again to replicate the job if desired.</td></tr>
             </tbody></table>
             <p></p>
     </div>
@@ -103,6 +99,9 @@
     <h3 class="">What small-molecule libraries are available?</h3>
     <div >
         <ol>
+            <li>
+            Test-set</a>: A small library of ~30 molecules. Useful to double check that your input receptor file, box center coordinates, and box size values are working correctly.
+            </li>
             <li>
             <a href="https://enamine.net/hit-finding/compound-collections/screening-collection/premium-collection">Enamine-PC</a>: The Enamine Premium Collection contains 43,339 compounds having most favorable physicochemical properties (high Fsp3, low LogP and MW). They have been synthesized in Enamine's lead-oriented synthesis program. Including enantiomers, this library contains 84,359 molecules.
             </li>
@@ -123,7 +122,7 @@
 
     <h3 class="">Are any changes made to my protein before it is docked?</h3>
     <div >
-        <p>Before being utilized by Autodock Vina, any uploaded PDB protein is, by necessity, converted to the PDBQT format. This involves stripping all heteroatoms (including waters), re-protonating all atoms, and reassigning Gasteiger charges to all atoms. This conversion is done using tools (prepare_receptor4.py) provided in AutoDockTools. The PDBQT formatted protein is eventually returned as part of the results for your inspection.</p>
+        <p>Before being utilized by AutoDock Vina, any uploaded PDB protein is, by necessity, converted to the PDBQT format. This involves stripping all heteroatoms (including waters), re-protonating all atoms, and reassigning Gasteiger charges to all atoms. This conversion is done using tools (prepare_receptor4.py) provided in AutoDockTools. The PDBQT formatted protein is eventually returned as part of the results for your inspection.</p>
         <p>If you wish to avoid these automated conversion steps, provide your protein file already in PDBQT format. None of the above processing steps are performed on protein files already in the PDBQT format. Information on how to generate PDBQT files for proteins (including assigning hydrogens to His residues) can be found in the AutoDockTools <a href="http://autodock.scripps.edu/resources/autoligand/AutoLigand_tutorial.pdf" target="_blank">manual</a> and <a href="http://autodock.scripps.edu/faqs-help/tutorial" target="_blank">tutorial</a>.</p>
     </div>
 
