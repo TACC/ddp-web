@@ -22,10 +22,10 @@ ENV PATH="/root/.rbenv/versions/3.1.2/bin:${PATH}"
 RUN gem install rails bundler
 
 WORKDIR /root
-RUN git clone https://github.com/TACC/ddp-web \
-    && cd ddp-web \
-    && bundle install
-
+COPY Gemfile .
+COPY Gemfile.lock .
+RUN bundle install
+COPY . ./ddp-web/
 WORKDIR /root/ddp-web
 EXPOSE 3000
 
