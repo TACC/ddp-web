@@ -1,16 +1,17 @@
 FROM ubuntu:24.04
 
 RUN apt update && apt upgrade -y
-RUN apt install gcc \
-                make \
-                libssl-dev \
-                libreadline-dev \
-                libffi-dev \
-                zlib1g-dev \
-                libsqlite3-dev \
-                curl \
+RUN apt install curl \
+                gcc \
                 git \
-                nginx -y
+                libffi-dev \
+                libreadline-dev \
+                libsqlite3-dev \
+                libssl-dev \
+                libyaml-dev \
+                make \
+                nginx \
+                zlib1g-dev -y
 
 RUN apt install ruby-dev \
                 rbenv \
