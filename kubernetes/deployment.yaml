@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ddp-web
+  labels:
+    app: ddp-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ddp-web
+  template:
+    metadata:
+      labels:
+        app: ddp-web
+    spec:
+      containers:
+        - name: ddp-web
+          imagePullPolicy: Always
+          image: wjallen/ddp-web:1.1.1
+          ports:
+          - name: http
+            containerPort: 3000

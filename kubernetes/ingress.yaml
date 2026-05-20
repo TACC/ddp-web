@@ -1,0 +1,37 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: drugdiscovery.savanna.tacc.cloud
+  namespace: drugdiscovery
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-route53-tacc.cloud"
+spec:
+  tls:
+    - hosts:
+        - drugdiscovery.savanna.tacc.cloud
+      secretName: drugdiscovery.savanna.tacc.cloud-tls
+    - hosts:
+        - drugdiscovery.tacc.utexas.edu
+      secretName: drugdiscovery.tacc.utexas.edu
+  rules:
+    - host: drugdiscovery.savanna.tacc.cloud
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ddp-web-service
+                port:
+                  number: 3000
+    - host: drugdiscovery.tacc.utexas.edu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ddp-web-service
+                port:
+                  number: 3000
